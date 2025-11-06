@@ -1,0 +1,16 @@
+### Reading Employee Data
+GET http://localhost:4004/odata/v4/employee-sample/Employees
+Content-Type: application/json
+
+
+### POST Data
+POST http://localhost:4004/odata/v4/employee-sample/Employees
+Content-Type: application/json
+
+{
+      "name": "Alex Smith",
+      "email": "Alex@gmail.com",
+      "address": "Street 100 East",
+      "designation": "Manager",
+      "company": "IBM"
+}
