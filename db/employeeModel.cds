@@ -26,4 +26,5 @@ entity Employees : managed, commonfields {
 
 entity FamilyMembers : managed, cuid, commonfields {
     relationShip : String;
+    gender       : String;
 }
