@@ -20,11 +20,12 @@ entity Employees : managed, commonfields {
         // email       : String(50);
         // address     : String;
         designation   : Association to Designation;
-        company       : String(50);
+        company       : Association to Company;
         age           : age;
         salary        : Decimal(10, 2);
         familyMembers : Composition of many FamilyMembers
                             on familyMembers.employee = $self;
+        status        : String;
 }
 
 entity FamilyMembers : managed, cuid, commonfields {
@@ -36,6 +37,16 @@ entity FamilyMembers : managed, cuid, commonfields {
 }
 
 entity Designation {
-    key code: String;
-    name: String;
+    key code : String;
+        name : String;
+}
+
+entity Company {
+    key code : String;
+        name : String;
+}
+
+entity LogEntryTable : cuid, managed {
+    desciption : String;
+    tableName  : String;
 }

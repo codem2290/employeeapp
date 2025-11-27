@@ -129,7 +129,23 @@
             "settings": {
               "editableHeaderContent": false,
               "contextPath": "/Employees",
-              "sectionLayout": "Tabs"
+              "sectionLayout": "Tabs",
+              "content": {
+                "header": {
+                  "actions": {
+                    "btnActStatus": {
+                      "press": "com.demo.employee.employeedetailapp.ext.controller.StatusHandler.onActivateEmployee",
+                      "visible": true,
+                      "enabled": true,
+                      "text": "Activate",
+                      "position": {
+                        "placement": "Before",
+                        "anchor": "EditAction"
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }

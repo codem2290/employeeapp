@@ -30,11 +30,6 @@ annotate service.Employees with @(
         },
         {
             $Type : 'UI.DataField',
-            Value : company,
-            Label : '{i18n>Company}',
-        },
-        {
-            $Type : 'UI.DataField',
             Value : address,
             Label : '{i18n>Address}',
         },
@@ -63,13 +58,13 @@ annotate service.Employees with @(
         },
         {
             $Type : 'UI.ReferenceFacet',
-            ID : 'company',
-            Target : '@UI.DataPoint#company',
+            ID : 'email',
+            Target : '@UI.DataPoint#email',
         },
         {
             $Type : 'UI.ReferenceFacet',
-            ID : 'email',
-            Target : '@UI.DataPoint#email',
+            ID : 'status',
+            Target : '@UI.DataPoint#status',
         },
     ],
     UI.DataPoint #company : {
@@ -126,13 +121,13 @@ annotate service.Employees with @(
             },
             {
                 $Type : 'UI.DataField',
-                Value : age,
-                Label : 'age',
+                Value : company_code,
+                Label : 'Company',
             },
             {
                 $Type : 'UI.DataField',
-                Value : company,
-                Label : 'company',
+                Value : age,
+                Label : 'age',
             },
             {
                 $Type : 'UI.DataField',
@@ -148,6 +143,11 @@ annotate service.Employees with @(
                 Value : createdBy,
             },
         ],
+    },
+    UI.DataPoint #status : {
+        $Type : 'UI.DataPointType',
+        Value : status,
+        Title : 'Status',
     },
 );
 
@@ -222,4 +222,29 @@ annotate service.FamilyMembers with @(
         },
     ]
 );
+
+annotate service.Employees with {
+    company @(
+        Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'Company',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : company_code,
+                    ValueListProperty : 'code',
+                },
+            ],
+        },
+        Common.ValueListWithFixedValues : true,
+        Common.Text : company.name,
+        Common.Text.@UI.TextArrangement : #TextOnly,
+        Common.FieldControl : #Mandatory,
+)};
+
+annotate service.Company with {
+    code @(
+        Common.Text : name,
+        Common.Text.@UI.TextArrangement : #TextOnly,
+)};
 
