@@ -7,4 +7,5 @@ service EmployeeSampleService {
     entity Company as projection on model.Company;
     entity LogEntryTable as projection on model.LogEntryTable;
     //entity FamilyMembers as projection on model.FamilyMembers;
+    action setEmployeeStatusActivated(empID: String) returns String;
 }

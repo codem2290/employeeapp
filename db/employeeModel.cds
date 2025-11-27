@@ -25,6 +25,7 @@ entity Employees : managed, commonfields {
         salary        : Decimal(10, 2);
         familyMembers : Composition of many FamilyMembers
                             on familyMembers.employee = $self;
+        status        : String;
 }
 
 entity FamilyMembers : managed, cuid, commonfields {

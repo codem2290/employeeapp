@@ -61,6 +61,11 @@ annotate service.Employees with @(
             ID : 'email',
             Target : '@UI.DataPoint#email',
         },
+        {
+            $Type : 'UI.ReferenceFacet',
+            ID : 'status',
+            Target : '@UI.DataPoint#status',
+        },
     ],
     UI.DataPoint #company : {
         $Type : 'UI.DataPointType',
@@ -138,6 +143,11 @@ annotate service.Employees with @(
                 Value : createdBy,
             },
         ],
+    },
+    UI.DataPoint #status : {
+        $Type : 'UI.DataPointType',
+        Value : status,
+        Title : 'Status',
     },
 );
 
