@@ -1,0 +1,61 @@
+_schema-version: 3.3.0
+ID: employeeapp
+version: 1.0.0
+description: "A simple CAP project."
+parameters:
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production
+modules:
+  - name: employeeapp-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      instances: 1
+      buildpack: nodejs_buildpack
+    build-parameters:
+      builder: npm-ci
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: employeeapp-auth
+      - name: employeeapp-db
+
+  - name: employeeapp-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: employeeapp-db
+
+resources:
+  - name: employeeapp-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: employeeapp-${org}-${space}
+        tenant-mode: dedicated
+        role-collections:
+          - name: 'employeeUser (employeeapp ${org}-${space})'
+            description: 'generated'
+            role-template-references:
+              - '$XSAPPNAME.employeeUser'
+          - name: 'managerUser (employeeapp ${org}-${space})'
+            description: 'generated'
+            role-template-references:
+              - '$XSAPPNAME.managerUser'
+  - name: employeeapp-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
