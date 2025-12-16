@@ -1,0 +1,2 @@
+sap.ui.define(["sap/m/MessageToast"],function(e){"use strict";return{onActivateEmployee:function(e,t){var i="setEmployeeStatusActivated";var a=e.getObject().employeeId;var n={model:this.getModel(),parameterValues:[{name:"empID",value:a}],skipParameterDialog:true};this.editFlow.invokeAction(i,n).then(function(e){this._controller.getExtensionAPI().refresh()}.bind(this)).catch(function(e){})}}});
+//# sourceMappingURL=StatusHandler.js.map
