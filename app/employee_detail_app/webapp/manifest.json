@@ -17,11 +17,24 @@
     },
     "dataSources": {
       "mainService": {
-        "uri": "/odata/v4/employee-sample/",
+        "uri": "odata/v4/employee-sample/",
         "type": "OData",
         "settings": {
           "annotations": [],
           "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "employee_detail_app-display": {
+          "semanticObject": "employee_detail_app",
+          "action": "display",
+          "title": "Employee Demo App",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
         }
       }
     }
@@ -155,5 +168,9 @@
   "sap.fiori": {
     "registrationIds": [],
     "archeType": "transactional"
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "employeeapp.service"
   }
 }

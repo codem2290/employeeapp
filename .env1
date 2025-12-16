@@ -1,0 +1,34 @@
+
+    "VCAP_SERVICES"={
+        "hana": [
+            {
+                "name": "employeeapp-db",
+                "instance_name": "employeeapp-db",
+                "label": "hana",
+                "tags": [
+                    "hana",
+                    "database",
+                    "relational",
+                    "cap-resource-name:db",
+                    "endpoint:https://api.cf.us10-001.hana.ondemand.com",
+                    "org:ba5b1c2dtrial",
+                    "space:dev"
+                ],
+                "plan": "hdi-shared",
+                "credentials": {
+                    "certificate": "-----BEGIN CERTIFICATE-----\\n...\\n-----END CERTIFICATE-----\\n-----BEGIN CERTIFICATE-----\\n...\\n-----END CERTIFICATE-----\\n-----BEGIN CERTIFICATE-----\\n...\\n-----END CERTIFICATE-----",
+                    "database_id": "",
+                    "driver": "com.sap.db.jdbc.Driver",
+                    "hdi_password": "",
+                    "hdi_user": "",
+                    "host": "",
+                    "password": "",
+                    "port": "443",
+                    "schema": "",
+                    "service_key_name": "key",
+                    "url": "",
+                    "user": ""
+                }
+            }
+        ]
+    }
