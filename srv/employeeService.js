@@ -38,6 +38,7 @@ class EmployeeSampleService extends cds.ApplicationService {
         this.on('setEmployeeStatusActivated', async (req) => {
             debugger;
             let empId = req.data.empID;
+            //Test code
             if (empId) {
                 let data = await UPDATE(Employees, empId).with({
                     status: "Activated"
