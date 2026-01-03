@@ -17,4 +17,5 @@ service EmployeeSampleService {
     entity LogEntryTable as projection on model.LogEntryTable;
     //entity FamilyMembers as projection on model.FamilyMembers;
     action setEmployeeStatusActivated(empID: String) returns String;
+    function updateStatus() returns String;
 }

@@ -26,6 +26,9 @@ entity Employees : managed, commonfields {
         familyMembers : Composition of many FamilyMembers
                             on familyMembers.employee = $self;
         status        : String;
+        fileContent   : LargeBinary  @Core.MediaType: fileType  @Core.ContentDisposition.Filename: fileName;
+        fileType      : String @Core.IsMediaType;
+        fileName      : String;
 }
 
 entity FamilyMembers : managed, cuid, commonfields {

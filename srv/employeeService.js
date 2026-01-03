@@ -1,6 +1,6 @@
 const cds = require('@sap/cds');
 const { message } = require('@sap/cds/lib/log/cds-error');
-const { INSERT, UPDATE } = require('@sap/cds/lib/ql/cds-ql');
+const { INSERT, UPDATE, SELECT } = require('@sap/cds/lib/ql/cds-ql');
 const { target } = require('@sap/cds/lib/ql/cds.ql-infer');
 class EmployeeSampleService extends cds.ApplicationService {
     init() {
@@ -49,6 +49,19 @@ class EmployeeSampleService extends cds.ApplicationService {
                 return {
                     "message": "Status Updated!!"
                 }
+            }
+        });
+
+        this.on('updateStatus', async (req) => {
+            let data = await SELECT.one.from(Employees).where({
+                company_code: 'ACC'
+            });
+            if (data) {
+                let updted = await UPDATE(Employees, data.employeeId).with({
+                    status: "Activated"
+                });
+
+                return "Success";
             }
         });
 

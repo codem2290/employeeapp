@@ -142,6 +142,11 @@ annotate service.Employees with @(
                 $Type : 'UI.DataField',
                 Value : createdBy,
             },
+            {
+                $Type : 'UI.DataField',
+                Value : fileContent,
+                Label : 'Attachments',
+            },
         ],
     },
     UI.DataPoint #status : {

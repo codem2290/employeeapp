@@ -28,6 +28,7 @@ modules:
       - name: employeeapp-auth
       - name: employeeapp-db
       - name: employeeapp-destination
+      - name: employeeapp-jobschedular
 
   - name: employeeapp-db-deployer
     type: hdb
@@ -149,7 +150,13 @@ resources:
           name: srv-api # must be used in xs-app.json as well
           url: ~{srv-url}
           forwardAuthToken: true
-
+  - name: employeeapp-jobschedular
+    type: org.cloudfoundry.managed-service
+    parameters: 
+      config: 
+        enable-xsuaa-support: true
+      service: jobscheduler
+      service-plan: lite
   - name: employeeapp-html5-repo-host
     type: org.cloudfoundry.managed-service
     parameters:
